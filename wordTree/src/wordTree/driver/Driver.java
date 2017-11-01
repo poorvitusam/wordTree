@@ -11,6 +11,8 @@ public class Driver {
 		String words = args[3];
 		int debugLevel = Integer.parseInt(args[4]);
 		
+		MyLogger.setDebugValue(debugLevel);
+		
 		FileProcessor reader = new FileProcessor(inputFile, "read", "read");;
 		FileProcessor writer = new FileProcessor(outputFile, "write", "output");
 	}
