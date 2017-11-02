@@ -19,8 +19,8 @@ public class Tree {
 	 * Add new node to tree
 	 * @param node
 	 */
-	public void addNode(Node node) {
-		traverseAndAdd(rootNode, node);
+	public void addWord(String word) {
+		traverseAndAdd(rootNode, word);
 	}
 	
 	/**
@@ -29,17 +29,17 @@ public class Tree {
 	 * @param nodeToAdd
 	 * @return node
 	 */
-	private Node traverseAndAdd(Node root, Node nodeToAdd) {
+	private Node traverseAndAdd(Node root, String wordToAdd) {
 		
 		if(root == null) {
-			root = nodeToAdd;
+			root = new Node(wordToAdd);
 			return root;
 		}
 		
-		if(nodeToAdd.getWord().compareTo(root.getWord()) > 0) {
-			root.setRightNode(traverseAndAdd(root.getLeftNode(), nodeToAdd));
-		} else if(nodeToAdd.getWord().compareTo(root.getWord()) < 0) {
-			root.setLeftNode(traverseAndAdd(root.getRightNode(), nodeToAdd));
+		if(wordToAdd.compareTo(root.getWord()) > 0) {
+			root.setRightNode(traverseAndAdd(root.getLeftNode(), wordToAdd));
+		} else if(wordToAdd.compareTo(root.getWord()) < 0) {
+			root.setLeftNode(traverseAndAdd(root.getRightNode(), wordToAdd));
 		} else {
 			root.incrementWordCount();
 		}
