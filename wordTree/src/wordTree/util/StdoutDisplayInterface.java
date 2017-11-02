@@ -1,5 +1,9 @@
-package src.wordTree.util;
+package wordTree.util;
 
-public class StdoutDisplayInterface {
-
+public interface StdoutDisplayInterface {
+	
+	/**
+	 * Implement this method to print results in console
+	 */
+	public void writeToStdout();	
 }

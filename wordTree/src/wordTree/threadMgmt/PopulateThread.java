@@ -1,4 +1,4 @@
-package src.wordTree.threadMgmt;
+package wordTree.threadMgmt;
 
 public class PopulateThread {
 
