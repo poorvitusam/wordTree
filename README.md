@@ -1,29 +1,44 @@
-# README #
+# Assignment 4’s README Team- Suresh Lalchandani & Poorvi Tusam
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Navigate to the folder of this README file:
 
-### What is this repository for? ###
+Perform Below commands to compile/run/clean the program:
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
-### How do I get set up? ###
+## To clean:
+ant -buildfile wordTree/src/build.xml clean
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+-----------------------------------------------------------------------
+## To compile: 
+ant -buildfile wordTree/src/build.xml all
 
-### Contribution guidelines ###
+-----------------------------------------------------------------------
+## To run by specifying arguments from command line 
+ant -buildfile wordTree/src/build.xml run -Darg0=input.txt -Darg1=output.txt -Darg2=DebugLevelInt
 
-* Writing tests
-* Code review
-* Other guidelines
+-----------------------------------------------------------------------
 
-### Who do I talk to? ###
+“We have done this assignment completely on our own. We have not copied
+it, nor have We given our solution to anyone else. We understand that if
+We are involved in plagiarism or cheating We will have to sign an
+official form that We have cheated and that this form will be stored in
+Our official university record. We also understand that We will receive a
+grade of 0 for the involved assignment for our first offense and that We
+will receive a grade of F for the course for any additional
+offense.
 
-* Repo owner or admin
-* Other community or team contact
+[Date: 11/03/2017] 
+
+-----------------------------------------------------------------------
+MyLogger Updates:
+
+Log Leve 0 - RELEASE
+Log Level 1 - DEBUG
+Log Level 2 - ERRORS
+Log Level 3 - DELETE
+Log Level 4 - CONSTRUCTOR
+
+
+
+
+-----------------------------------------------------------------------
