@@ -53,6 +53,11 @@ public class Driver {
 			System.exit(1);
 		}
 		
+		if(debugLevel < 0 && debugLevel > 4) {
+			System.err.println("Invalid Log level found in the command");
+			System.exit(1);
+		}
+		
 		MyLogger.setDebugValue(debugLevel);
 		
 		FileProcessor inputFileProcess = new FileProcessor(inputFile, Permission.READ);
