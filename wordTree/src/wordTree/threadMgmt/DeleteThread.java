@@ -5,19 +5,17 @@ import wordTree.tree.Tree;
 public class DeleteThread implements Runnable{
 
 	Tree tree;
-	String[] wordsToDelete;
-	 
-	public DeleteThread(Tree treeI, String[] wordsToDeleteI) {
+	String wordToDelete;
+
+	public DeleteThread(Tree treeI, String wordToDeleteI) {
 		tree = treeI;
-		wordsToDelete = wordsToDeleteI;
+		wordToDelete = wordToDeleteI;
 	}
 
-	
+
 	@Override
 	public void run() {
-		for(String word : wordsToDelete) {
-			tree.delete(word);
-		}
+		tree.delete(wordToDelete);
 	}
 
 }

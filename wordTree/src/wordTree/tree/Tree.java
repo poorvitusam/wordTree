@@ -25,7 +25,7 @@ public class Tree {
 	 * Add new node to tree
 	 * @param node
 	 */
-	public void addWord(String word) {
+	public synchronized void addWord(String word) {
 		if(word == null || word.length() == 0) return;
 		
 		if(rootNode == null) {
@@ -70,7 +70,7 @@ public class Tree {
 	 * @param bNumber
 	 * @param course
 	 */
-	public void delete(String word) {
+	public synchronized void delete(String word) {
 		Node node = lookup(rootNode, word);
 		
 		if(node != null) {

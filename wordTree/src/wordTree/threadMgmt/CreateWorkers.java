@@ -47,7 +47,7 @@ public class CreateWorkers {
 
 		try {
 			while(i > 0) {
-				DeleteThread deleteThread = new DeleteThread(tree, wordsToDelete);
+				DeleteThread deleteThread = new DeleteThread(tree, wordsToDelete[i-1]);
 
 				Thread thread = new Thread(deleteThread);
 				thread.start();

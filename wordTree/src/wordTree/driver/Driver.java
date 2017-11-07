@@ -48,6 +48,11 @@ public class Driver {
 			System.exit(1);
 		}
 		
+		if(NUM_THREADS != wordsToDelete.length) {
+			System.err.println("Number of Threads and Words to delete count should be same");
+			System.exit(1);
+		}
+		
 		MyLogger.setDebugValue(debugLevel);
 		
 		FileProcessor inputFileProcess = new FileProcessor(inputFile, Permission.READ);
