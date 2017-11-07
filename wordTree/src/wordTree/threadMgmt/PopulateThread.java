@@ -24,7 +24,7 @@ public class PopulateThread implements Runnable {
 			String[] words = line.split(" ");
 			
 			for(String word : words) {
-				tree.addWord(word);
+				tree.addWord(word.trim());
 			}
 		}
 	}

@@ -2,9 +2,12 @@ package wordTree.driver;
 
 
 import wordTree.store.Results;
+import wordTree.threadMgmt.CreateWorkers;
+import wordTree.tree.Tree;
 import wordTree.util.FileProcessor;
 import wordTree.util.FileProcessor.Permission;
 import wordTree.util.MyLogger;
+import wordTree.util.WordsStatistics;
 
 public class Driver {
 	public static void main(String args[]) {
@@ -32,6 +35,7 @@ public class Driver {
 		String outputFile = args[1];
 		
 		String words = args[3];
+		String[] wordsToDelete = words.split(" ");
 		
 		int NUM_THREADS = 0;
 		int debugLevel = -1;
@@ -50,5 +54,16 @@ public class Driver {
 		inputFileProcess.allowEmptyFile(false);
 		
 		Results results = new Results(outputFile);
+		Tree tree = new Tree();
+		
+		CreateWorkers createWorkers = new CreateWorkers(NUM_THREADS, inputFileProcess, tree);
+		createWorkers.startPopulateWorkers();
+		
+		//After populate tree is done
+		createWorkers.startDeleteWorkers(wordsToDelete);
+		
+		WordsStatistics statistics = new WordsStatistics(results, tree);
+		statistics.populate();
+		
 	}
 }

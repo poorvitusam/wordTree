@@ -3,13 +3,17 @@ package wordTree.tree;
 import wordTree.store.Results;
 
 /**
- * Helper class that holds and create a Binary Search Tree for given BNumber and Courses
+ * Helper class that holds and create a Binary Search Tree for given words and count
  * @author suresh
  *
  */
 public class Tree {
 	
 	Node rootNode; 
+	
+	int numberOfDistinctWords;
+	int numberOfTotalWords;
+	int numberOfCharacters;
 	
 	public void setRootNode(Node rootNode) {
 		this.rootNode = rootNode;
@@ -20,6 +24,7 @@ public class Tree {
 	 * @param node
 	 */
 	public void addWord(String word) {
+		if(word == null || word.length() == 0) return;
 		traverseAndAdd(rootNode, word);
 	}
 	
@@ -104,5 +109,41 @@ public class Tree {
 		
 		printInAscendingOrder(node.getRightNode(), result);
 	}
+	
+	/**
+	 * Traverse tree in In Order form and store result in Results object
+	 * @param node
+	 * @param result
+	 */
+	private void calculateCount(Node node) {
+		if(node == null) return;
+		
+		calculateCount(node.getLeftNode());
+		
+		if(node.occurrence > 0) {
+			numberOfCharacters += node.word.length() * node.occurrence;
+			numberOfDistinctWords += 1;
+			numberOfTotalWords += node.occurrence;
+		}
+		
+		calculateCount(node.getRightNode());
+	}
+	
+	public void calculateStats() {
+		calculateCount(rootNode);
+	}
+	
+	public int getNumberOfCharacters() {
+		return numberOfCharacters;
+	}
+	
+	
+	public int getNumberOfTotalWords() {
+		return numberOfTotalWords;
+	}
 
+	
+	public int getNumberOfDistinctWords() {
+		return numberOfDistinctWords;
+	}
 }

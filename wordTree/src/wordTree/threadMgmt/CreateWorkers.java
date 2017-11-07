@@ -17,11 +17,10 @@ public class CreateWorkers {
 	}
 
 
-	public CreateWorkers(int numOfThreadsI, FileProcessor fileProcessorI, Results resultsI) {
+	public CreateWorkers(int numOfThreadsI, FileProcessor fileProcessorI, Tree treeI) {
 		numOfThreads = numOfThreadsI;
 		fileProcessor = fileProcessorI;
-		results = resultsI;
-		tree = new Tree();
+		tree = treeI;
 	}
 
 	public void startPopulateWorkers() {
@@ -34,11 +33,33 @@ public class CreateWorkers {
 				Thread thread = new Thread(populateThread);
 				thread.start();
 				thread.join();
+				--i;
 			}
 		} catch (InterruptedException e) {
 			System.err.println("CreateWorked:startPopulateWorkers- Exception occured " + e.getLocalizedMessage());
 		}
 	}
+	
+
+	public void startDeleteWorkers(String[] wordsToDelete) {
+		int i = numOfThreads;
+
+		try {
+			while(i > 0) {
+				DeleteThread deleteThread = new DeleteThread(tree, fileProcessor, wordsToDelete);
+
+				Thread thread = new Thread(deleteThread);
+				thread.start();
+				thread.join();
+				--i;
+			}
+		} catch (InterruptedException e) {
+			System.err.println("CreateWorked:startPopulateWorkers- Exception occured " + e.getLocalizedMessage());
+		}
+	}
+	
+	
+	
 
 
 
