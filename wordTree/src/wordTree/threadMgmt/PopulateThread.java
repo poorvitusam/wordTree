@@ -15,6 +15,9 @@ public class PopulateThread implements Runnable {
 
 	@Override
 	public void run() {
+		
+		System.out.println(Thread.currentThread().getName());
+		
 		String line = "";
 		while((line = fileProcessor.readLine()) != null ) {
 			line = line.trim();

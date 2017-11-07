@@ -31,6 +31,7 @@ public class CreateWorkers {
 				PopulateThread populateThread = new PopulateThread(tree, fileProcessor);
 
 				Thread thread = new Thread(populateThread);
+				thread.setName("Thread"+i);
 				thread.start();
 				thread.join();
 				--i;
@@ -46,7 +47,7 @@ public class CreateWorkers {
 
 		try {
 			while(i > 0) {
-				DeleteThread deleteThread = new DeleteThread(tree, fileProcessor, wordsToDelete);
+				DeleteThread deleteThread = new DeleteThread(tree, wordsToDelete);
 
 				Thread thread = new Thread(deleteThread);
 				thread.start();

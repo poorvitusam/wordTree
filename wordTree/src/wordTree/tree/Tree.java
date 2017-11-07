@@ -1,6 +1,8 @@
 package wordTree.tree;
 
 import wordTree.store.Results;
+import wordTree.util.MyLogger;
+import wordTree.util.MyLogger.DebugLevel;
 
 /**
  * Helper class that holds and create a Binary Search Tree for given words and count
@@ -25,6 +27,13 @@ public class Tree {
 	 */
 	public void addWord(String word) {
 		if(word == null || word.length() == 0) return;
+		
+		if(rootNode == null) {
+			rootNode = new Node(word);
+			rootNode.occurrence = 1;
+			return;
+		}
+		
 		traverseAndAdd(rootNode, word);
 	}
 	
@@ -38,15 +47,19 @@ public class Tree {
 		
 		if(root == null) {
 			root = new Node(wordToAdd);
+			root.occurrence = 1;
 			return root;
 		}
 		
 		if(wordToAdd.compareTo(root.getWord()) > 0) {
-			root.setRightNode(traverseAndAdd(root.getLeftNode(), wordToAdd));
+			MyLogger.writeMessage("Added to right of " + root.word + " - " + wordToAdd, DebugLevel.DEBUG);
+			root.setRightNode(traverseAndAdd(root.getRightNode(), wordToAdd));
 		} else if(wordToAdd.compareTo(root.getWord()) < 0) {
-			root.setLeftNode(traverseAndAdd(root.getRightNode(), wordToAdd));
+			MyLogger.writeMessage("Added to left of " + root.word + " - " + wordToAdd, DebugLevel.DEBUG);
+			root.setLeftNode(traverseAndAdd(root.getLeftNode(), wordToAdd));
 		} else {
 			root.incrementWordCount();
+			MyLogger.writeMessage(" Incremented Count for  " + wordToAdd + " Count-" + root.occurrence, DebugLevel.DEBUG);
 		}
 		
 		return root;
@@ -60,8 +73,10 @@ public class Tree {
 	public void delete(String word) {
 		Node node = lookup(rootNode, word);
 		
-		if(node != null)
+		if(node != null) {
+			MyLogger.writeMessage("Deleted Word " + word, DebugLevel.DELETED);
 			node.decrementWordCount();
+		}
 	}
 	
 	/**

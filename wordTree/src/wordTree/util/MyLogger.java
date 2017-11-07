@@ -3,8 +3,7 @@ package wordTree.util;
 
 public class MyLogger{
 
-	public static enum DebugLevel {RELEASE, DEBUG, ERROR, DELETED, CONSTRUCTOR
-	};
+	public static enum DebugLevel {RELEASE, DEBUG, ERROR, DELETED, CONSTRUCTOR};
 
 	private static DebugLevel debugLevel;
 

@@ -41,6 +41,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 	public void writeToFile() {
 		FileProcessor fileProcessor = new FileProcessor(outputFilePath, Permission.WRITE);
 		fileProcessor.writeLines(testResults);
+		fileProcessor.closeFile();
 		
 		System.out.println("Result is generated at path = " + fileProcessor.getFilePath());
 	}

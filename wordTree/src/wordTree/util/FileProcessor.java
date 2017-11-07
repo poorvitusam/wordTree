@@ -17,7 +17,7 @@ import wordTree.util.MyLogger.DebugLevel;
  *
  */
 public class FileProcessor {
-	
+
 	/**
 	 * Enum that will define the use of FileProcess whether it's a File READ operation or WRITE operation.
 	 * @author suresh
@@ -32,9 +32,10 @@ public class FileProcessor {
 	BufferedWriter writer;
 	Permission permission;
 	boolean permitEmptyFile = false;
-	
+
 	public FileProcessor() {
 		MyLogger.writeMessage("FileProcessor Constructor is called", DebugLevel.CONSTRUCTOR);
+		openFile();
 	}
 
 	/**
@@ -47,6 +48,7 @@ public class FileProcessor {
 		MyLogger.writeMessage("FileProcessor Parameterized Constructor is called", DebugLevel.CONSTRUCTOR);
 		this.filePath = filePath;
 		this.permission = permission;
+		openFile();
 	} 
 
 	/**
@@ -68,7 +70,7 @@ public class FileProcessor {
 			return false;
 		}
 
-		
+
 		File file = new File(filePath);
 		boolean openSuccess = true;
 		try {
@@ -81,11 +83,9 @@ public class FileProcessor {
 					System.exit(1);
 					return false;
 				}
-				
-				if (reader == null) {
-					FileReader fileReader = new FileReader(file);
-					reader = new BufferedReader(fileReader);
-				}
+
+				FileReader fileReader = new FileReader(file);
+				reader = new BufferedReader(fileReader);
 				break;
 			case WRITE:
 				FileWriter fileWriter = new FileWriter(file);
@@ -118,26 +118,15 @@ public class FileProcessor {
 	 * @param lines to write into file
 	 */
 	public void writeLines(List<String> lines) {
-		// In case the file path is not available or file is not able to open
-		boolean isSuccess = true;
-		if (!openFile()) {
-			System.err.println("File path doesn't exist");
-			System.exit(0);
-			return;
-		}
-
 		try {
 			for(String line : lines ) {
 				writer.append(line+"\n");
 			}
 		} catch (IOException e) {
-			isSuccess = false;
 			System.err.println("FileProcessor:writeLine - IOException Occured :: "  + e.getLocalizedMessage());
-		} finally {
 			closeFile();
-			if(!isSuccess) {
-				System.exit(0);
-			}
+			System.exit(0);
+		} finally {
 		}
 	}
 
@@ -147,12 +136,8 @@ public class FileProcessor {
 	 */
 	public String readLine() {
 
-		boolean shouldClose = false;
-		boolean isSuccess = true;
-		// In case the file path is not available or file is not able to open
-		if (!openFile()) {
-			System.err.println("File path doesn't exist");
-			System.exit(0);
+		if(this.reader == null) {
+			System.out.println("File is not open");
 			return null;
 		}
 
@@ -160,18 +145,11 @@ public class FileProcessor {
 
 		try {
 			line = this.reader.readLine();
-			shouldClose = line == null;
 		} catch (IOException e) {
 			System.err.println("FileProcessor:readLine - IO Exception Occured :: "  + e.getLocalizedMessage());
-			isSuccess = false;
+			closeFile();
+			System.exit(0);
 		} finally {
-			if (shouldClose) { 
-				closeFile();
-			}
-			
-			if(!isSuccess) {
-				System.exit(0);
-			}
 		}
 
 		return line;
@@ -180,7 +158,7 @@ public class FileProcessor {
 	/**
 	 * Close file if already opened
 	 */
-	private void closeFile() {
+	public void closeFile() {
 		try {
 			switch (permission) {
 			case READ:
@@ -213,7 +191,7 @@ public class FileProcessor {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
-	
+
 	public String getFilePath() {
 		return filePath;
 	}

@@ -65,5 +65,7 @@ public class Driver {
 		WordsStatistics statistics = new WordsStatistics(results, tree);
 		statistics.populate();
 		
+		inputFileProcess.closeFile();
+		
 	}
 }
