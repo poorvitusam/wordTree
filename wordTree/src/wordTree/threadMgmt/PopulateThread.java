@@ -2,6 +2,8 @@ package wordTree.threadMgmt;
 
 import wordTree.tree.Tree;
 import wordTree.util.FileProcessor;
+import wordTree.util.MyLogger;
+import wordTree.util.MyLogger.DebugLevel;
 
 public class PopulateThread implements Runnable {
 	
@@ -15,6 +17,9 @@ public class PopulateThread implements Runnable {
 
 	@Override
 	public void run() {
+		
+		MyLogger.writeMessage("Thread - " + Thread.currentThread().getName(), DebugLevel.DEBUG);
+		
 		String line = "";
 		while((line = fileProcessor.readLine()) != null ) {
 			line = line.trim();

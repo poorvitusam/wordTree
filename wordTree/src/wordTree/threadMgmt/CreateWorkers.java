@@ -3,6 +3,8 @@ package wordTree.threadMgmt;
 import wordTree.store.Results;
 import wordTree.tree.Tree;
 import wordTree.util.FileProcessor;
+import wordTree.util.MyLogger;
+import wordTree.util.MyLogger.DebugLevel;
 
 public class CreateWorkers {
 
@@ -34,6 +36,7 @@ public class CreateWorkers {
 				thread.setName("Thread"+i);
 				thread.start();
 				thread.join();
+				MyLogger.writeMessage("Thread Joined- " + thread.getName(), DebugLevel.DEBUG);
 				--i;
 			}
 		} catch (InterruptedException e) {

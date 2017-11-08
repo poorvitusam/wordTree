@@ -60,8 +60,7 @@ public class Driver {
 		
 		MyLogger.setDebugValue(debugLevel);
 		
-		FileProcessor inputFileProcess = new FileProcessor(inputFile, Permission.READ);
-		inputFileProcess.allowEmptyFile(false);
+		FileProcessor inputFileProcess = new FileProcessor(inputFile, Permission.READ, false);
 		
 		Results results = new Results(outputFile);
 		Tree tree = new Tree();

@@ -43,21 +43,16 @@ public class FileProcessor {
 	 * i.e Either WRITE or READ
 	 * @param filePath
 	 * @param permission
+	 * @param permitEmptyFile
 	 */
-	public FileProcessor(String filePath, Permission permission) {
+	public FileProcessor(String filePath, Permission permission, boolean permitEmptyFile) {
 		MyLogger.writeMessage("FileProcessor Parameterized Constructor is called", DebugLevel.CONSTRUCTOR);
 		this.filePath = filePath;
 		this.permission = permission;
+		this.permitEmptyFile = permitEmptyFile;
 		openFile();
 	} 
 
-	/**
-	 * Setter method for flag to allow Empty File
-	 * @param permitEmptyFile
-	 */
-	public void allowEmptyFile(boolean permitEmptyFile) {
-		this.permitEmptyFile = permitEmptyFile;
-	}
 
 
 	/**

@@ -39,7 +39,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 	
 	@Override
 	public void writeToFile() {
-		FileProcessor fileProcessor = new FileProcessor(outputFilePath, Permission.WRITE);
+		FileProcessor fileProcessor = new FileProcessor(outputFilePath, Permission.WRITE, true);
 		fileProcessor.writeLines(testResults);
 		fileProcessor.closeFile();
 		
