@@ -1,7 +1,7 @@
-package wordTree.util;
+package wordTree.tree;
 
 import wordTree.store.Results;
-import wordTree.tree.Tree;
+import wordTree.util.MyLogger;
 import wordTree.util.MyLogger.DebugLevel;
 
 

@@ -3,10 +3,10 @@ package wordTree.driver;
 import wordTree.store.Results;
 import wordTree.threadMgmt.CreateWorkers;
 import wordTree.tree.Tree;
+import wordTree.tree.WordsStatistics;
 import wordTree.util.FileProcessor;
 import wordTree.util.FileProcessor.Permission;
 import wordTree.util.MyLogger;
-import wordTree.util.WordsStatistics;
 
 public class Driver {
 	public static void main(String args[]) {
