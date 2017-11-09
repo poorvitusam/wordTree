@@ -17,6 +17,10 @@ public class Tree {
 	int numberOfTotalWords;
 	int numberOfCharacters;
 	
+	public Tree() {
+		MyLogger.writeMessage("Tree Parameterized Constructor is called ", DebugLevel.CONSTRUCTOR);
+	}
+	
 	public void setRootNode(Node rootNode) {
 		this.rootNode = rootNode;
 	}
@@ -52,14 +56,11 @@ public class Tree {
 		}
 		
 		if(wordToAdd.compareTo(root.getWord()) > 0) {
-			MyLogger.writeMessage("Added to right of " + root.word + " - " + wordToAdd, DebugLevel.DEBUG);
 			root.setRightNode(traverseAndAdd(root.getRightNode(), wordToAdd));
 		} else if(wordToAdd.compareTo(root.getWord()) < 0) {
-			MyLogger.writeMessage("Added to left of " + root.word + " - " + wordToAdd, DebugLevel.DEBUG);
 			root.setLeftNode(traverseAndAdd(root.getLeftNode(), wordToAdd));
 		} else {
 			root.incrementWordCount();
-			MyLogger.writeMessage(" Incremented Count for  " + wordToAdd + " Count-" + root.occurrence, DebugLevel.DEBUG);
 		}
 		
 		return root;
@@ -74,7 +75,6 @@ public class Tree {
 		Node node = lookup(rootNode, word);
 		
 		if(node != null) {
-			MyLogger.writeMessage("Deleted Word " + word, DebugLevel.DELETED);
 			node.decrementWordCount();
 		}
 	}

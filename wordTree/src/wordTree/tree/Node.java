@@ -1,5 +1,8 @@
 package wordTree.tree;
 
+import wordTree.util.MyLogger;
+import wordTree.util.MyLogger.DebugLevel;
+
 /**
  * Class that represents Node of a tree.
  * @author suresh
@@ -25,6 +28,7 @@ public class Node {
 	 * @param bNumber
 	 */
 	public Node(String wordI) {
+		MyLogger.writeMessage("Node Parameterized Constructor is called ", DebugLevel.CONSTRUCTOR);
 		word = wordI;
 		leftNode = null;
 		rightNode = null;

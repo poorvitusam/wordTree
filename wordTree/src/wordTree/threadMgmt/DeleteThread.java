@@ -1,6 +1,8 @@
 package wordTree.threadMgmt;
 
 import wordTree.tree.Tree;
+import wordTree.util.MyLogger;
+import wordTree.util.MyLogger.DebugLevel;
 
 public class DeleteThread implements Runnable{
 
@@ -8,6 +10,7 @@ public class DeleteThread implements Runnable{
 	String wordToDelete;
 
 	public DeleteThread(Tree treeI, String wordToDeleteI) {
+		MyLogger.writeMessage("DeleteThread Parameterized Constructor is called ", DebugLevel.CONSTRUCTOR);
 		tree = treeI;
 		wordToDelete = wordToDeleteI;
 	}
@@ -15,6 +18,7 @@ public class DeleteThread implements Runnable{
 
 	@Override
 	public void run() {
+		MyLogger.writeMessage("Running DeleteThread ~ Deleting word - " + wordToDelete, DebugLevel.RUNNABLE);
 		tree.delete(wordToDelete);
 	}
 

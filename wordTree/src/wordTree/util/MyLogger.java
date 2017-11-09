@@ -3,7 +3,7 @@ package wordTree.util;
 
 public class MyLogger{
 
-	public static enum DebugLevel {RELEASE, DEBUG, ERROR, DELETED, CONSTRUCTOR};
+	public static enum DebugLevel {RELEASE, DEBUG, VERBOSE, RUNNABLE, DELETED, CONSTRUCTOR};
 
 	private static DebugLevel debugLevel;
 
@@ -11,8 +11,8 @@ public class MyLogger{
 	public static void setDebugValue (int levelIn) {
 		switch (levelIn) {
 		case 4: debugLevel = DebugLevel.CONSTRUCTOR; break;
-		case 3: debugLevel = DebugLevel.DELETED; break;
-		case 2: debugLevel = DebugLevel.ERROR; break;
+		case 3: debugLevel = DebugLevel.RUNNABLE; break;
+		case 2: debugLevel = DebugLevel.VERBOSE; break;
 		case 1: debugLevel = DebugLevel.DEBUG; break;
 		case 0: debugLevel = DebugLevel.RELEASE; break;
 		}

@@ -14,7 +14,8 @@ ant -buildfile wordTree/src/build.xml all
 
 -----------------------------------------------------------------------
 ## To run by specifying arguments from command line 
-ant -buildfile wordTree/src/build.xml run -Darg0=input.txt -Darg1=output.txt -Darg2=DebugLevelInt
+ant -buildfile wordTree/src/build.xml run -Darg0=input.txt -Darg1=output.txt 
+-Darg2=NUM_OF_THREADS -Darg3=WORDS_TO_BE_DELETED -Darg4=DebugLevelInt
 
 -----------------------------------------------------------------------
 
@@ -27,18 +28,23 @@ grade of 0 for the involved assignment for our first offense and that We
 will receive a grade of F for the course for any additional
 offense.
 
-[Date: 11/03/2017] 
+[Date: 11/08/2017] 
+
 
 -----------------------------------------------------------------------
+
+Provide justification for Data Structures used in this assignment in
+term of Big O complexity (time and/or space)
+To store results and threads: arraylist- O(n)
+
+-----------------------------------------------------------------------
+
 MyLogger Updates:
 
-Log Leve 0 - RELEASE
-Log Level 1 - DEBUG
-Log Level 2 - ERRORS
-Log Level 3 - DELETE
-Log Level 4 - CONSTRUCTOR
-
-
-
+Log Level 0 - RELEASE
+Log Level 1 - DEBUG - Prints the output (Statistics)
+Log Level 2 - VERBOSE - Prints the Thread process
+Log Level 3 - RUNNABLE - Every time a thread's run method is called
+Log Level 4 - CONSTRUCTOR - Every time a constructor is called
 
 -----------------------------------------------------------------------

@@ -2,6 +2,7 @@ package wordTree.util;
 
 import wordTree.store.Results;
 import wordTree.tree.Tree;
+import wordTree.util.MyLogger.DebugLevel;
 
 
 
@@ -12,6 +13,7 @@ public class WordsStatistics {
 	Tree tree;
 
 	public WordsStatistics(Results resultsI, Tree treeI) {
+		MyLogger.writeMessage("WordsStatistics Parameterized Constructor is called ", DebugLevel.CONSTRUCTOR);
 		tree = treeI;
 		results = resultsI;
 	}
@@ -23,7 +25,6 @@ public class WordsStatistics {
 		results.storeNewResult("The total number of characters: " + tree.getNumberOfCharacters());
 		results.storeNewResult("The total number of distinct words: " + tree.getNumberOfDistinctWords());
 
-		results.writeToStdout();
 		results.writeToFile();
 	}
 

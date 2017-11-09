@@ -11,6 +11,7 @@ public class PopulateThread implements Runnable {
 	FileProcessor fileProcessor;
 	 
 	public PopulateThread(Tree treeI, FileProcessor fileProcessorI) {
+		MyLogger.writeMessage("PopulateThread Parameterized Constructor is called ", DebugLevel.CONSTRUCTOR);
 		tree = treeI;
 		fileProcessor = fileProcessorI;
 	}
@@ -18,7 +19,7 @@ public class PopulateThread implements Runnable {
 	@Override
 	public void run() {
 		
-		MyLogger.writeMessage("Thread - " + Thread.currentThread().getName(), DebugLevel.DEBUG);
+		MyLogger.writeMessage("Running  Populate Thread - " + Thread.currentThread().getName(), DebugLevel.RUNNABLE);
 		
 		String line = "";
 		while((line = fileProcessor.readLine()) != null ) {

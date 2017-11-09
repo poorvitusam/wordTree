@@ -1,5 +1,7 @@
 package wordTree.threadMgmt;
 
+import java.util.ArrayList;
+
 import wordTree.store.Results;
 import wordTree.tree.Tree;
 import wordTree.util.FileProcessor;
@@ -20,6 +22,7 @@ public class CreateWorkers {
 
 
 	public CreateWorkers(int numOfThreadsI, FileProcessor fileProcessorI, Tree treeI) {
+		MyLogger.writeMessage("CreateWorkers Parameterized Constructor is called ", DebugLevel.CONSTRUCTOR);
 		numOfThreads = numOfThreadsI;
 		fileProcessor = fileProcessorI;
 		tree = treeI;
@@ -27,7 +30,7 @@ public class CreateWorkers {
 
 	public void startPopulateWorkers() {
 		int i = numOfThreads;
-
+		ArrayList<Thread> threadList=new ArrayList<Thread>();
 		try {
 			while(i > 0) {
 				PopulateThread populateThread = new PopulateThread(tree, fileProcessor);
@@ -35,10 +38,20 @@ public class CreateWorkers {
 				Thread thread = new Thread(populateThread);
 				thread.setName("Thread"+i);
 				thread.start();
-				thread.join();
-				MyLogger.writeMessage("Thread Joined- " + thread.getName(), DebugLevel.DEBUG);
+				threadList.add(thread);
+				MyLogger.writeMessage("Thread-" + thread.getName() + " Started for PopulateWorkers", DebugLevel.VERBOSE);
 				--i;
 			}
+		} catch (Exception e) {
+			System.err.println("CreateWorked:startPopulateWorkers- Exception occured " + e.getLocalizedMessage());
+		}
+		
+		try {
+			for(Thread thread : threadList) {
+				thread.join();
+				MyLogger.writeMessage("Thread-" + thread.getName() + " Joined for PopulateWorkers", DebugLevel.VERBOSE);
+			}
+			threadList.clear();
 		} catch (InterruptedException e) {
 			System.err.println("CreateWorked:startPopulateWorkers- Exception occured " + e.getLocalizedMessage());
 		}
@@ -47,25 +60,29 @@ public class CreateWorkers {
 
 	public void startDeleteWorkers(String[] wordsToDelete) {
 		int i = numOfThreads;
-
+		ArrayList<Thread> threadList=new ArrayList<Thread>();
+		
 		try {
 			while(i > 0) {
 				DeleteThread deleteThread = new DeleteThread(tree, wordsToDelete[i-1]);
-
 				Thread thread = new Thread(deleteThread);
 				thread.start();
-				thread.join();
+				threadList.add(thread);
+				MyLogger.writeMessage("Thread-" + thread.getName() + " Started for DeleteWorkers", DebugLevel.VERBOSE);
 				--i;
 			}
+		} catch (Exception e) {
+			System.err.println("CreateWorked:startPopulateWorkers- Exception occured " + e.getLocalizedMessage());
+		}
+		
+		try {
+			for(Thread thread : threadList) {
+				thread.join();
+				MyLogger.writeMessage("Thread-" + thread.getName() + " Joined for DeleteWorkers", DebugLevel.VERBOSE);
+			}
+			threadList.clear();
 		} catch (InterruptedException e) {
 			System.err.println("CreateWorked:startPopulateWorkers- Exception occured " + e.getLocalizedMessage());
 		}
 	}
-	
-	
-	
-
-
-
-
 }
