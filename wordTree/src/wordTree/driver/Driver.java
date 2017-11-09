@@ -70,9 +70,9 @@ public class Driver {
 
 		if ((args[0].trim().length() == 0 || args[0].contains("${arg0}"))
 				|| (args[1].trim().length() == 0 || args[1].contains("${arg1}"))
-				|| (args[1].trim().length() == 0 || args[1].contains("${arg2}"))
-				|| (args[1].trim().length() == 0 || args[1].contains("${arg3}"))
-				|| (args[2].trim().length() == 0 || args[2].contains("${arg4}"))) {
+				|| (args[2].trim().length() == 0 || args[2].contains("${arg2}"))
+				|| (args[3].trim().length() == 0 || args[3].contains("${arg3}"))
+				|| (args[4].trim().length() == 0 || args[4].contains("${arg4}"))) {
 			return false;
 		}
 
