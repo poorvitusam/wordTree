@@ -6,7 +6,7 @@ Perform Below commands to compile/run/clean the program:
 
 
 ## To clean:
-ant -buildfile wordTree/src/build.xml clean
+c clean
 
 -----------------------------------------------------------------------
 ## To compile: 
@@ -35,7 +35,14 @@ offense.
 
 Provide justification for Data Structures used in this assignment in
 term of Big O complexity (time and/or space)
+
 To store results and threads: arraylist- O(n)
+
+Used Binary Search Tree for storing words: 
+Complexity::
+search - worst case = O(n) & best case = O(logn) where n is the number of nodes
+insert - worst case = O(n) & best case = O(logn) where n is the number of nodes
+
 
 -----------------------------------------------------------------------
 
