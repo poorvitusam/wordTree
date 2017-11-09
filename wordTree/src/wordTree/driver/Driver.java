@@ -33,7 +33,7 @@ public class Driver {
 			System.exit(0);
 		}
 
-		if (numOfThreads != wordsToDelete.length) {
+		if (numOfThreads != wordsToDelete.length || numOfThreads < 1 || numOfThreads > 3) {
 			System.err.println("Number of Threads and Words to delete count should be same");
 			System.exit(0);
 		}
